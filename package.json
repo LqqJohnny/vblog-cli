@@ -1,0 +1,28 @@
+{
+  "name": "vblog-cli",
+  "version": "1.0.0",
+  "description": "vblog 脚手架",
+  "main": "index.js",
+  "bin": {
+    "vblog": "./bin/vblog.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LqqJohnny/vblog-cli.git"
+  },
+  "keywords": [
+    "vblog"
+  ],
+  "author": "lqqppl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LqqJohnny/vblog-cli/issues"
+  },
+  "homepage": "https://github.com/LqqJohnny/vblog-cli#readme",
+  "dependencies": {
+    "git-clone": "^0.1.0"
+  }
+}
