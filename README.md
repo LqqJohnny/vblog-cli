@@ -6,6 +6,9 @@
 
 ### 功能
 
+#### init
+`vblog init 我的博客`   初始化一个 [vblog](https://github.com/LqqJohnny/SimpleBlogByVue.git) 项目
+
 #### add
 
 `vblog add blog firstBlog` 将会添加一篇名为 `firstBlog` 的博客
