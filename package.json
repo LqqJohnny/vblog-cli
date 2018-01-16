@@ -17,7 +17,7 @@
     "vblog"
   ],
   "author": "lqqppl",
-  "license": "ISC",
+  "license": "Apache License 2.0",
   "bugs": {
     "url": "https://github.com/LqqJohnny/vblog-cli/issues"
   },

@@ -3,18 +3,21 @@
 'use strict';
 var fs = require("fs");
 const clone = require('git-clone');
-
+const pkg = require('../package.json');
 var run= function (opt) {
   switch(opt[0]){
     case 'init':
       if(opt[1]){
-        console.log("正在下载模板...");
+        console.log("downloading template...");
         clone("https://github.com/LqqJohnny/SimpleBlogByVue.git",opt[1],null,function(){
-          console.log("模板下载完成. 按照如下顺序执行： \r\n  1. npm install  \r\n  2. npm run dev \r\n 即可在localhost:8000 看到神奇的东西");
+          console.log("Template download completed, Follow the sequence below: \r\n  1. npm install  \r\n  2. npm run dev \r\n then you can see something wonderful at : \r\n localhost:8000");
         });
       }else{
-        console.log("请确定项目名称，如  vblog init 我的博客");
+        console.log("Please confirm the project name, for  example: vblog init MyBlog");
       }
+      break;
+    case 'version':
+      console.log("version: "+pkg.version);
       break;
     case 'add':
       if(opt[1]==="blog"){ // 添加博客
@@ -23,9 +26,9 @@ var run= function (opt) {
           fs.writeFileSync('./src/articles/'+opt[2]+'.md',text);
           //  待做  加入新文章到 三个 json  ---------------------
 
-          console.log('新博客 '+ opt[2] +'.md 已生成');
+          console.log('a new blog called "'+ opt[2] +'.md " has been generated');
         }else{
-          console.log('fail , 这不是vblog项目的根目录。');
+          console.log('failed : this is not a vblog project directory.');
         }
 
       }
@@ -38,12 +41,12 @@ var run= function (opt) {
            // 移动文件
             fs.rename(sourceFile, destPath, function (err) {
               if (err) throw err;
-              console.log("文章已删除，可在回收站 src/recycleBin 查看已删除文章");
+              console.log("blog has been deleted,you can see it at this directory: \r\n src/recycleBin.");
             });
             // 删除 三个 json文件的对应信息 ---------------------
 
          }else{
-            console.log('没有这篇文章。')
+            console.log('There is no such blog here,Please confirm the blog\'s name first.')
          }
       }
       break;
@@ -55,17 +58,17 @@ var run= function (opt) {
            // 移动文件
             fs.rename(sourceFile, destPath, function (err) {
               if (err) throw err;
-              console.log("文章恢复成功");
+              console.log("the article has been restored successfully.");
             });
             // 加入 三个 json文件的对应信息 ---------------------
 
          }else{
-            console.log('没有这篇文章。')
+            console.log('There is no such blog here,Please confirm the blog\'s name first.')
          }
       }
       break;
     default:
-      console.log("您输入的指令未识别，请确认是否正确");
+      console.log("unknow command: "+ opt[0] +". \r\ncheck the command you have input .it must be one of the options below : \r\n  1. init \r\n  2.add  \r\n  3.delete  \r\n  4.restore    ......  \r\nmore command or info about vblog-cli ? please check out this website : \r\n**https://github.com/LqqJohnny/vblog-cli**");
       break;
   }
 };
