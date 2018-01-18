@@ -6,6 +6,20 @@ const clone = require('git-clone');
 const pkg = require('../package.json');
 var run= function (opt) {
   switch(opt[0]){
+    case '-h':
+      var helpStr = '\r\n  Usage: vblog <command> [options]\r\n \r\n'+
+                    '  Commands:\r\n\r\n'+
+                    '     init        generate a new project from a template\r\n'+
+                    '     add         add a blog by name\r\n'+
+                    '     delete      delete a blog\r\n'+
+                    '     restore     restore a blog\r\n'+
+
+                    '\r\n  Options: \r\n\r\n'+
+
+                    '     -h          output usage information\r\n'+
+                    '     -v          output the version number\r\n \r\n';
+      console.log(helpStr);
+      break;
     case 'init':
       if(opt[1]){
         console.log("downloading template...");
@@ -16,7 +30,7 @@ var run= function (opt) {
         console.log("Please confirm the project name, for  example: vblog init MyBlog");
       }
       break;
-    case 'version':
+    case '-v':
       console.log("version: "+pkg.version);
       break;
     case 'add':
@@ -30,7 +44,16 @@ var run= function (opt) {
         }else{
           console.log('failed : this is not a vblog project directory.');
         }
-
+      }else if(opt[1]==="theme"){
+        var target = './theme/'+opt[2];
+         if( fs.existsSync('./theme')  ){
+           console.log('downloading template... please wait a minute.');
+           clone("https://github.com/LqqJohnny/vblog_theme_template.git",target,null,function(){
+             console.log("OK, theme "+opt[2]+" added successfully!");
+           });
+         }else{
+            console.log('failed : this is not a vblog project directory.')
+         }
       }
       break;
     case "delete":
