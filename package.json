@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/LqqJohnny/vblog-cli#readme",
   "dependencies": {
+    "chalk": "^2.3.0",
     "git-clone": "^0.1.0"
   }
 }
